@@ -1,39 +1,33 @@
 import React, { useState } from 'react';
 import './App.css';
+import Box from './box';
 
 
 function App() {
-  const [coin, setCoin] = useState(0);
-  const [bill, setBill] = useState(0);
+
+  const [count, updateCount] = useState(0);
+
+  function boxClicked(brother) { //
+    updateCount(count + 1);
+    if (brother === 1) {
+      setCount1(count1 + 1);
+    } else {
+      setCount2(count2 + 1);
+    }
+  
+}
 
 
-  return (
-    <div> <h1 className='box'> " Todo fue diversion hasta que intente usar callbacks " - Jhen</h1>
-      <div className='box'>
-        <h3>Monedas</h3>
-        <button id='50'  className='coin' onClick={() => setCoin(coin + 50)}>50</button>
-        <button id='100' className='coin' onClick={() => setCoin(coin + 100)}>100</button>
-        <button id='500'  className='coin' onClick={() => setCoin(coin + 500)}>500</button>
-      </div>
-      <div className='box'>
-        <h3>Billetes</h3>
+const [count1, setCount1] = useState(0);
+const [count2, setCount2] = useState(0);
 
-        <button id='1000'  className='bill' onClick={() => setBill(bill + 1000)}>1000</button>
-        <button id='5000'  className='bill' onClick={() => setBill(bill + 5000)}>5000</button>
-        <button id='10000' className='bill' onClick={() => setBill(bill + 10000)}>10000</button>
-      </div>
-      <div className='box'>
-        <h3>Monto Total  :</h3>
-        <h2>{(bill+coin)}</h2>
-      </div>
-      <div className='box'>
-        <h4>Diferencial Monedas:{(coin-bill)} </h4>
-      </div>
-      <div className='box'>
-        <h4>Diferencial Billetes: {(bill-coin)}</h4>
-      </div>
-    </div>
-  );
+return (
+  <div>
+    <Box id={1} brotherCount={count2} boxPush={boxClicked} />
+    <Box id={2} brotherCount={count1} boxPush={boxClicked} />
+    <p>Contador padre : {count}</p>
+  </div>
+);
 }
 
 export default App;
